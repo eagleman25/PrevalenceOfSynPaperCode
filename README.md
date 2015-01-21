@@ -4,8 +4,6 @@ Prevalence of Learned Grapheme-Color Pairings in a Large Online Sample of Synest
 to be published in PLoS One
 The authors are Nathan Witthoft, Jonathan Winawer, and David M Eagleman
 
-creative commons license?
-
 To generate the figures run the function s_MainAnalysis.m
 
 To run all of the code requires matlab 2014b and the statistics toolbox. 
