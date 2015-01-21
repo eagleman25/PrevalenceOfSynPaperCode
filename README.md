@@ -1,8 +1,9 @@
 # PrevalenceOfSynPaperCode
-This is the code and data used to generate the analyses and figures for the paper 
+This is the code and data used to generate the analyses and figures for the paper:
+
 Prevalence of Learned Grapheme-Color Pairings in a Large Online Sample of Synesthetes
 to be published in PLoS One
-The authors are Nathan Witthoft, Jonathan Winawer, and David M Eagleman
+The authors are Nathan Witthoft, Jonathan Winawer, and David M Eagleman.
 
 To generate the figures run the function s_MainAnalysis.m
 
