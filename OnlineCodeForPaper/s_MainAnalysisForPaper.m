@@ -3,6 +3,11 @@
 % in a Large Online Sample of Synesthetes'
 
 
+% add paths to analysis functions and data
+addpath('fxnsandscripts');  addpath('data');
+
+
+
 
 % begin by loading the eagleman database
 load EaglemanColoredAlphabets.mat;
@@ -16,6 +21,7 @@ load EaglemanColoredAlphabets.mat;
 %   u_rlab       6588x4x26           same
 %   userid       6588x1               userid for 6588 subjects to map back
 %   to database
+
 
 
 % we will be using u_rgb which contains the 6588 subjects x useridRGB x 26
@@ -88,7 +94,7 @@ histcolors = [ 0 0 0;
 % several comparisons (shuffled data etc) to both the magnets and the modal
 % matching behavior
 % makes the figure which is the basis for figure 2B
-s_fpRichAndEaglemanMatches
+s_fpAndEaglemanMatches
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 

@@ -16,9 +16,6 @@
 %                 magnet: [6588x26 double]
 %                 random: [6588x26 double]
 %                uniform: [6588x26 double]
-%                   rich: [6588x26 double]
-
-
 
 
 % do monte carlo to find out probability of observing n or more matches
@@ -27,7 +24,6 @@
 % data and our null distributions
 sim.colshuffled = zeros(1,27);
 sim.rowshuffled = zeros(1,27);
-sim.rich = zeros(1,27);
 sim.uniform = zeros(1,27);
 sim.randomRGB = zeros(1,27);
 
@@ -68,26 +64,7 @@ for i=1:numsims
     sim.rowshuffled = sim.rowshuffled+temp;
     
     
-    
-    %     rich distribution
-    %% Create a null distribution using rich data
-    tmp                   = rand(n , 26); % random numbers which will be converted to labels
-    labels.rich           = zeros(n, 26); % this will hold the labels
-    rich.cumFrequencies   = cumsum(rich.frequencies, 2);
-    rich.cumFrequencies   = bsxfun(@rdivide, rich.cumFrequencies, sum(rich.frequencies,2));
-    for ll = 1:26
-        for ii = 1:n
-            labels.rich(ii,ll) = find(rich.cumFrequencies(ll,:) >= tmp(ii,ll),1) - 1;
-        end
-    end
-    %     get n matches for each subject
-    matches = labels.rich == labels.magnet;
-    nummatchesinsim = sum(matches,2);
-    %     coount number of matches
-    temp = hist(nummatchesinsim,0:26);
-    %     add to simulation
-    sim.rich = sim.rich+temp;
-    
+   
     
     % %     uniform distribution across color labels
     % generalte random labels
@@ -98,7 +75,7 @@ for i=1:numsims
     %     coount number of matches
     temp = hist(nummatchesinsim,0:26);
     %     add to simulation
-    sim.uniform = sim.rich+temp;
+    sim.uniform = sim.uniform+temp;
     
     
     % %    random RGB values
@@ -112,7 +89,7 @@ for i=1:numsims
     %     coount number of matches
     temp = hist(nummatchesinsim,0:26);
     %     add to simulation
-    sim.randomRGB = sim.rich+temp;
+    sim.randomRGB = sim.randomRGB+temp;
     
     
 end
@@ -122,7 +99,6 @@ end
 % matches to the magnet set (0 to 26 matches possible)
 p.colshuffled = sim.colshuffled/sum(sim.colshuffled);
 p.rowshuffled = sim.rowshuffled/sum(sim.rowshuffled);
-p.rich = sim.rich/sum(sim.rich);
 p.uniform = sim.uniform/sum(sim.uniform);
 p.randomRGB = sim.randomRGB/sum(sim.randomRGB);
 % 
@@ -137,11 +113,10 @@ format short g;
 % this table gives us the probability of observing 10 or more matches give
 % the column shuffling cited in the paper.
 fprintf('probability of observing n or more matches to the magnet set\n');
-fprintf('n\tcol\trich\tuniform\trandom\tmagnetcount\n');
+fprintf('n\tcol\tuniform\trandom\tmagnetcount\n');
 % make a table
 disp([(0:26)' fliplr(cumsum(p.rowshuffled(end:-1:1)))' ....
     fliplr(cumsum(p.colshuffled(end:-1:1)))',...
-    fliplr(cumsum(p.rich(end:-1:1)))',...
     fliplr(cumsum(p.uniform(end:-1:1)))',...
     fliplr(cumsum(p.randomRGB(end:-1:1)))',...
     fliplr(cumsum(magnethist(end:-1:1)))'])

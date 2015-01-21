@@ -132,7 +132,7 @@ xlabel('year of birth');
 ylabel('number of synesthetes');
 
 % save as eps
-saveas(gcf,'prevovertimebars.eps','eps');
+% saveas(gcf,'prevovertimebars.eps','eps');
 
 % average of frequency across all years
 % plot2svg('prevovertimebars.svg',gcf,'svg');
@@ -159,96 +159,4 @@ magduringtoyyears = find(syntype(toyyearssubs)==2);
 % prevalence during years of manufacture
 fprintf('prevalence of magnet syns 1971-1990 is %g\n',...
     length(magduringtoyyears)/length(toyyearssubs));
-
-
-% suppose we want confidence intervals on the histograms.  its weird to say
-% that because we only have the one measure, but very different amounts of
-% data to work with over the years (very few subjects in their 80s or under
-% the age of 10) many in the 30-50 range
-
-% [bins' allhist' fqhist' maghist']
-
-% 
-%         1925           0           0           0
-%         1930           6           0           0
-%         1935           8           0           0
-%         1940          27           3           0
-%         1945          42           6           0
-%         1950          71          10           0
-%         1955         104          19           0
-%         1960         126           8           0
-%         1965         186          27          13
-%         1970         293          24          41
-%         1975         535          76          80
-%         1980         981         142         126
-%         1985        1460         284          77
-%         1990        1632         389          36
-%         1995         607         147           8
-%         2000         128          23           4
-%         2005          14           2           1
-
-% so the algorithm is to randomly sample with replacement from our
-% distribution many times and then generate statistics across the bins
-% so our subject ages are in subdob
-    nbstraps = 1000;
-
-    fqstraps = [];
-    mgstraps = [];
-
-    % histogram data in 5 year intervals
-    bins = 1925:5:2005;
-
-    % probably doesn't need to be a for loop?
-    % for each bootstrap
-    for i=1:nbstraps
-        % get index to our random sample
-        rsample =  randi(length(subdob),[length(subdob),1]);
-    %    get type of synesthete for sample index
-        rsampsyntype = syntype(rsample);
-    %     get dobs for sample index
-        rsampsubdob = subdob(rsample)';
-        %     turn these into binned data for different types of synesthetes
-        rsampallhist = histc(rsampsubdob,bins);
-        rsampfqhist = histc(rsampsubdob(rsampsyntype==1),bins);
-        rsampmaghist = histc(rsampsubdob(rsampsyntype==2),bins);
-    %     now into proportions which we will store
-        fqstraps(i,:) = rsampfqhist./rsampallhist;
-        mgstraps(i,:) = rsampmaghist./rsampallhist;
-
-
-    end
-
-
-
-% figure with shaded 95% confidence intervals
-    
-%  get intervals
-
-fqci = prctile(fqstraps,[2.5 97.5]);
-mgci = prctile(mgstraps,[2.5 97.5]);
-
-% errorbars use differences from mean not actual values
-fqmed = nanmedian(fqstraps);%median bootstrapped high frequency syns
-fqer(1,:) = abs(fqmed - fqci(1,:));
-fqer(2,:) = abs(fqmed + fqci(2,:));
-mgmed = nanmedian(mgstraps);%median bootstrapped magnet syns
-mger(1,:) = abs(mgmed - mgci(1,:));
-mger(2,:) = abs(mgmed + mgci(2,:))
-figure('Name','95% ci of bootstraps of fq and mag','Color',[1 1 1],'Position',get(0,'ScreenSize'));
-
-% not sure what is going on with subjects who give birthdates of 2000 or
-% later since they are not adults yet.  so clip chart to where we have
-% reasonable data
-whichbins = [3:15];
-% errorbar3 was written by Kendrick Kay and is part of his matlab toolkit
-% https://github.com/kendrickkay/knkutils
-% slightly modified to control transparency of confidence intervals
-errorbar3(bins(whichbins),fqmed(whichbins),fqci(:,whichbins),1,'k');
-hold on;
-plot(bins(whichbins),fqmed(whichbins),'k');
-errorbar3(bins(whichbins),mgmed(whichbins),mgci(:,whichbins),1,'r');
-plot(bins(whichbins),mgmed(whichbins),'r');
-plot(bins(whichbins),mgmed(whichbins),'r*');
-axis on;
-box off;
 
