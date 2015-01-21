@@ -2,9 +2,10 @@
 % this script does the analyses used in our paper 'Prevalence of Learning
 % in a Large Online Sample of Synesthetes'
 
-
 % add paths to analysis functions and data
-addpath('fxnsandscripts');  addpath('data');
+rootdir = fileparts(which(mfilename)); 
+addpath(fullfile(rootdir, 'fxnsandscripts'));  
+addpath(fullfile(rootdir, 'data'));
 
 
 
