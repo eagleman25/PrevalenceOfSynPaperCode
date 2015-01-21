@@ -39,7 +39,7 @@ end
 
 % make some figures
 % histograms of subjects by year, fq subs by year, and mag subs by year
-figure('name','subject date of birth data','Color', [1 1 1],'Position',get(0,'ScreenSize'))
+figure('name','subject date of birth data','Color', [1 1 1])
 % allsubjects
 subplot(1,3,1);
 hist(subdob,1930:5:2010);
@@ -84,8 +84,7 @@ lnumnotmag = sum(~isnan(notmagdob));
 
 
 % make a histogram of unbinned magent synesthete data
-figure('Name','date of birth of magnet syns','Color',[1 1 1],...
-    'Position',get(0,'ScreenSize'));
+figure('Name','date of birth of magnet syns','Color',[1 1 1]);
 % counts by year
 % years to use
 %  some people give birth dates after 2000 but not sure if those are errors
@@ -115,8 +114,7 @@ xlabel('year of birth');
 ylabel('number of synesthetes');
 
 
-figure('Name','%of magnet syns by year of birth','Color',[1 1 1],...
-    'Position',get(0,'ScreenSize'));
+figure('Name','%of magnet syns by year of birth','Color',[1 1 1]);
 
 % get modal matching pct by year
 fqpctbyyear = fqhistbyyear./allhistbyyear;

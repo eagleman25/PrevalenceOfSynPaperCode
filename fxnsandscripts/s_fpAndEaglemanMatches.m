@@ -116,7 +116,7 @@ Cond{5} = 'uniform distribution of labels';
 
 % let's put these on a single plot with log y axis
 figure('name','compare magnet syns to rich distribution and shuffled eagleman',...
-    'Color',[1 1 1],'Position',get(0,'ScreenSize'));
+    'Color',[1 1 1]);
 
 colors = [0 1 0; 0 .5 0; 0 0 1];
 

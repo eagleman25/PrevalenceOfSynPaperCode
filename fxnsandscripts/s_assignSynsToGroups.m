@@ -49,7 +49,7 @@ syntype(find(sum(magmatches,2)>=magnetthreshold))=2;
 % this is figure 2c in the paper
 figure('name', [ num2str(length(find(syntype==2))) ...
     ' subjects with more than ' num2str(magnetthreshold) ...
-    ' matches to letter set'], 'Color', [1 1 1],'Position',get(0,'ScreenSize'));
+    ' matches to letter set'], 'Color', [1 1 1]);
 
 subplot(1,3,3);
 
