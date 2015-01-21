@@ -10,7 +10,7 @@ To run all of the code requires matlab 2014b and the statistics toolbox.
 
 All of the analysis with the exception of the clustering will run with matlab 2008 or later and the statistics toolbox.  To skip the clustering comment out the line s_synclusteringAnal.
 
-The code includes the function shuffle.m from the psychophysics toolbox (http://psychtoolbox.org/).   The source code can be found here:
+The code includes the function Shuffle.m from the Psychophysics toolbox (http://psychtoolbox.org/).   The source code can be found here:
 https://github.com/Psychtoolbox-3/Psychtoolbox-3/tree/PTB_Beta-2014-11-06_V3.0.12
 
 
