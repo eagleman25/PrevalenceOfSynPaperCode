@@ -14,6 +14,8 @@ All of the analysis with the exception of the clustering will run with matlab 20
 The code includes the function Shuffle.m from the Psychophysics toolbox (http://psychtoolbox.org/).   The source code can be found here:
 https://github.com/Psychtoolbox-3/Psychtoolbox-3/tree/PTB_Beta-2014-11-06_V3.0.12
 
+The code and data are provided to reproduce the figures and analyses for the paper.  For other uses please contact David M Eagleman
+
 
 
 
